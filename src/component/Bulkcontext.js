@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 const whatsBulkContext = createContext();
 function Bulkcontext(props) {
-  const host = "http://localhost:4000";
+  const host = "https://whatbulk.onrender.com";
   const bulkinitial = [];
   const [bulks, setBulks] = useState(bulkinitial);
 
