@@ -235,7 +235,7 @@ export default function Bulk(props) {
         <p className="text-4xl pb-8"> your Bulks</p>
         {bulks.length === 0 && "Nothing to display please Add the bulk"}
       </div>
-      <div className="grid grid-cols-3 m-auto gap-4  w-11/12 ">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 m-auto gap-4  w-11/12 ">
         {bulks.map((bulk) => (
           <Bulkitem
             key={bulk._id}
