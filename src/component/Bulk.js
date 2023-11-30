@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect,  useState } from "react";
 import { whatsBulkContext } from "./Bulkcontext";
 import Bulkitem from "./Bulkitem";
 import { AiOutlinePauseCircle, AiOutlinePlaySquare } from "react-icons/ai";
@@ -27,8 +27,7 @@ export default function Bulk(props) {
     }
     // eslint-disable-next-line
   }, []);
-  const ref = useRef(null);
-
+  
   const [showModal, setShowModal] = useState(false);
 
   const [bulk, setBulk] = useState({
@@ -38,13 +37,10 @@ export default function Bulk(props) {
     econtact: "",
     efile: "",
   });
-  // const [hell,setHell]= useState("hii")
   const updateBulk = (currentBulk) => {
-    ref.current.click();
-
     setShowModal(true);
     setBulk({
-      id: currentBulk.id,
+      id: currentBulk._id,
       enumber: currentBulk.number,
       emessage: currentBulk.message,
       econtact: currentBulk.contact,
@@ -53,10 +49,11 @@ export default function Bulk(props) {
   };
 
   const handleClick = (e) => {
-    editBulk(bulk.id, bulk.enumber, bulk.emessage, bulk.econtact, bulk.efile);
+    editBulk(bulk.id, bulk.enumber, bulk.emessage,bulk.econtact,bulk.efile)
     setShowModal(false);
     props.showAlert("Sucessfullly Edited your Bulk", "success");
-    console.log("updating the bulk" + bulk);
+    console.log("updated......"+bulk)
+
   };
   const onChange = (e) => {
     setBulk({ ...bulk, [e.target.name]: e.target.value });
@@ -69,15 +66,6 @@ export default function Bulk(props) {
   return (
     <>
       <div>
-        {/* <button
-        ref={ref}
-          onClick={() => {
-            setShowModal(true);
-          }}
-          className=" btn btn-primary"
-        >
-          launch
-        </button> */}
         {/* <!-- Modal --> */}
         <TEModal show={showModal} setShow={setShowModal}>
           <TEModalDialog>

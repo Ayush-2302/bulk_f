@@ -43,7 +43,7 @@ export default function Nave(props) {
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className=" lg:block  md:block sm:hidden hidden sm:ml-6 ">
                     <div className="flex space-x-4">
-                      {navigation.map((item) => (
+                      {navigation.map((item,ele) => (
                         <Link
                           key={item.name}
                           to={item.to}

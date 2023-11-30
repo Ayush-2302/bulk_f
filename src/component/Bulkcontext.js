@@ -55,12 +55,13 @@ function Bulkcontext(props) {
   };
 
   const editBulk = async (id, number, message, contact, file) => {
-    const response = await fetch(`${host}/api/bulk//updatebulk/${id}`, {
-      method: "PUT",
+    const response = await fetch(
+      `${host}/api/bulk/updatebulk/${id}`,
+      {      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-         localStorage.getItem('token')
+        localStorage.getItem('token')
       },
       body: JSON.stringify({ number, message, contact, file }),
     });
@@ -68,17 +69,18 @@ function Bulkcontext(props) {
     console.log(json);
     let newBulk = JSON.parse(JSON.stringify(bulks));
 
-    for (let i = 0; i < bulks.length; i++) {
-      const element = bulks[i];
+    for (let index = 0; index < newBulk.length; index++) {
+      const element = newBulk[index];
       if (element._id === id) {
-        newBulk[i].number = number;
-        newBulk[i].message = message;
-        newBulk[i].contact = contact;
-        newBulk[i].file = file;
+        newBulk[index].number = number;
+        newBulk[index].message = message;
+        newBulk[index].contact = contact; 
+        newBulk[index].file = file; 
+        break; 
       }
-    }
+    }  
     setBulks(newBulk);
-  };
+  }
 
   return (
     <>
