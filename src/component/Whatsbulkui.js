@@ -64,7 +64,7 @@ const navigate=useNavigate();
             minLength={5}
             required
             onChange={onChange}
-            className=" flex border-2 rounded-md w-full"
+            className=" flex border-2 pl-2 rounded-md w-full"
           ></textarea>
 
           <button
@@ -84,7 +84,7 @@ const navigate=useNavigate();
             value={bulk.message}
             minLength={5}
             required
-            className=" flex border-2 rounded-md w-full"
+            className=" flex border-2 pl-2 rounded-md w-full"
           ></textarea>
           <div className="emoji float-right">
             <div
@@ -109,7 +109,7 @@ const navigate=useNavigate();
             value={bulk.contact}
             minLength={5}
             required
-            className=" flex border-2 rounded-md w-full"
+            className=" flex border-2 pl-2 rounded-md w-full"
           ></textarea>
         </div>
 
@@ -122,7 +122,7 @@ const navigate=useNavigate();
             value={bulk.file}
             minLength={5}
             required
-            className=" flex border-2 rounded-md w-full"
+            className=" flex border-2 pl-2 rounded-md w-full"
           ></textarea>
         </div>
 

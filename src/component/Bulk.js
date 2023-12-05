@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,  useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { whatsBulkContext } from "./Bulkcontext";
 import Bulkitem from "./Bulkitem";
 import { AiOutlinePauseCircle, AiOutlinePlaySquare } from "react-icons/ai";
@@ -27,7 +27,7 @@ export default function Bulk(props) {
     }
     // eslint-disable-next-line
   }, []);
-  
+
   const [showModal, setShowModal] = useState(false);
 
   const [bulk, setBulk] = useState({
@@ -49,11 +49,10 @@ export default function Bulk(props) {
   };
 
   const handleClick = (e) => {
-    editBulk(bulk.id, bulk.enumber, bulk.emessage,bulk.econtact,bulk.efile)
+    editBulk(bulk.id, bulk.enumber, bulk.emessage, bulk.econtact, bulk.efile);
     setShowModal(false);
     props.showAlert("Sucessfullly Edited your Bulk", "success");
-    console.log("updated......"+bulk)
-
+    console.log("updated......" + bulk);
   };
   const onChange = (e) => {
     setBulk({ ...bulk, [e.target.name]: e.target.value });
@@ -102,7 +101,7 @@ export default function Bulk(props) {
               <TEModalBody>
                 {/* <Whatsbulkui /> */}
 
-                <div className="bulk m-auto  p-5 mb-20 rounded-md w-11/12 bg-white">
+                <div className="bulk m-auto   mb-20 rounded-md w-full bg-white">
                   <p className=" text-4xl  text-center p-3 text-info rounded-md font-semibold ">
                     WhatBulk
                   </p>
@@ -124,7 +123,7 @@ export default function Bulk(props) {
                       value={bulk.enumber}
                       minLength={5}
                       required
-                      className=" flex border-2 rounded-md w-full"
+                      className=" flex border-2 pl-2 rounded-md w-full"
                     ></textarea>
 
                     <button
@@ -146,7 +145,7 @@ export default function Bulk(props) {
                       value={bulk.emessage}
                       minLength={5}
                       required
-                      className=" flex border-2 rounded-md w-full"
+                      className=" flex border-2 pl-2 rounded-md w-full"
                     ></textarea>
                     <div className="emoji float-right">
                       <div
@@ -173,7 +172,7 @@ export default function Bulk(props) {
                       id="econtact"
                       onChange={onChange}
                       value={bulk.econtact}
-                      className=" flex border-2 rounded-md w-full"
+                      className=" flex border-2 pl-2 rounded-md w-full"
                       minLength={5}
                       required
                     ></textarea>
@@ -188,7 +187,7 @@ export default function Bulk(props) {
                       value={bulk.efile}
                       minLength={5}
                       required
-                      className=" flex border-2 rounded-md w-full"
+                      className=" flex border-2 pl-2 rounded-md w-full"
                     ></textarea>
                   </div>
                 </div>
