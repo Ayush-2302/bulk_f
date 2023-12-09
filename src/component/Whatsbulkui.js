@@ -115,15 +115,16 @@ const navigate=useNavigate();
 
         <div className="file pl-10 w-11/12  pt-3  ">
           <h2 className=" text-2xl text-info font-semibold">file</h2>
-          <textarea
+          <input
             name="file"
             id="file"
+            type="file"
             onChange={onChange}
             value={bulk.file}
             minLength={5}
             required
             className=" flex border-2 pl-2 rounded-md w-full"
-          ></textarea>
+          ></input>
         </div>
 
         <div className="flex  space-x-2 p-8 ">
