@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
+// import App1 from './App1';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    {/* <App1/> */}
   </React.StrictMode>
 );
 
