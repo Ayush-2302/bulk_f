@@ -32,7 +32,6 @@ export default function Bulk(props) {
 
   const [bulk, setBulk] = useState({
     id: "",
-    enumber: "",
     emessage: "",
     econtact: "",
     efile: "",
@@ -41,7 +40,6 @@ export default function Bulk(props) {
     setShowModal(true);
     setBulk({
       id: currentBulk._id,
-      enumber: currentBulk.number,
       emessage: currentBulk.message,
       econtact: currentBulk.contact,
       efile: currentBulk.file,
@@ -49,7 +47,7 @@ export default function Bulk(props) {
   };
 
   const handleClick = (e) => {
-    editBulk(bulk.id, bulk.enumber, bulk.emessage, bulk.econtact, bulk.efile);
+    editBulk(bulk.id, bulk.emessage, bulk.econtact, bulk.efile);
     setShowModal(false);
     props.showAlert("Sucessfullly Edited your Bulk", "success");
     console.log("updated......" + bulk);
@@ -105,38 +103,17 @@ export default function Bulk(props) {
                   <p className=" text-4xl  text-center p-3 text-info rounded-md font-semibold ">
                     WhatBulk
                   </p>
-                  <div className="txt pl-10  w-11/12  pt-4 ">
-                    <div className="flex justify-between items-center">
+                 
+                  <div className="msg pl-10 w-11/12   pt-3">
+                  <div className="flex justify-between items-center">
                       <h2 className=" text-2xl text-info font-semibold">
-                        Number
+                        Title
                       </h2>
                       <div className="ico flex pr-5 space-x-3 text-2xl text-info">
                         <AiOutlinePlaySquare />
                         <AiOutlinePauseCircle />
                       </div>
                     </div>
-
-                    <textarea
-                      name="enumber"
-                      id="enumber"
-                      onChange={onChange}
-                      value={bulk.enumber}
-                      minLength={5}
-                      required
-                      className=" flex border-2 pl-2 rounded-md w-full"
-                    ></textarea>
-
-                    <button
-                      type="button"
-                      className="inline-block rounded bg-info mt-1 px-6 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-info-400 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-info-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    >
-                      Upload CSV
-                    </button>
-                  </div>
-                  <div className="msg pl-10 w-11/12   pt-3">
-                    <h2 className=" text-2xl text-info font-semibold">
-                      Message
-                    </h2>
 
                     <textarea
                       name="emessage"
@@ -165,7 +142,7 @@ export default function Bulk(props) {
                   </div>
                   <div className="contact pl-10 w-11/12   pt-8">
                     <h2 className=" text-2xl text-info font-semibold">
-                      Contact
+                      Content
                     </h2>
                     <textarea
                       name="econtact"
@@ -175,19 +152,6 @@ export default function Bulk(props) {
                       className=" flex border-2 pl-2 rounded-md w-full"
                       minLength={5}
                       required
-                    ></textarea>
-                  </div>
-
-                  <div className="file pl-10 w-11/12  pt-3  ">
-                    <h2 className=" text-2xl text-info font-semibold">file</h2>
-                    <textarea
-                      name="efile"
-                      id="efile"
-                      onChange={onChange}
-                      value={bulk.efile}
-                      minLength={5}
-                      required
-                      className=" flex border-2 pl-2 rounded-md w-full"
                     ></textarea>
                   </div>
                 </div>
@@ -202,10 +166,8 @@ export default function Bulk(props) {
                 </button>
                 <button
                   disabled={
-                    bulk.enumber.length < 5 ||
                     bulk.emessage.length < 5 ||
-                    bulk.econtact.length < 5 ||
-                    bulk.efile.length < 5
+                    bulk.econtact.length < 5 
                   }
                   onClick={handleClick}
                   type="button"
@@ -223,13 +185,14 @@ export default function Bulk(props) {
         {bulks.length === 0 && "Nothing to display please Add the bulk"}
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 m-auto gap-4  w-11/12 ">
-        {bulks.map((bulk) => (
-          <Bulkitem
-            key={bulk._id}
-            bulk={bulk}
-            updateBulk={updateBulk}
-            showAlert={props.showAlert}
-          />
+        {bulks.map((bulk, index) => (
+          <div key={index}>
+            <Bulkitem
+              bulk={bulk}
+              updateBulk={updateBulk}
+              showAlert={props.showAlert}
+            />
+          </div>
         ))}
       </div>
     </>

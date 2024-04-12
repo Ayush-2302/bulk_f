@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 const whatsBulkContext = createContext();
 function Bulkcontext(props) {
-  const host = "https://bulk-backend.onrender.com";
+  const host = "http://localhost:4040";
   const bulkinitial = [];
   const [bulks, setBulks] = useState(bulkinitial);
 
@@ -11,8 +11,7 @@ function Bulkcontext(props) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-         localStorage.getItem('token')
+        "auth-token": localStorage.getItem("token"),
       },
     });
     const json = await response.json();
@@ -20,20 +19,27 @@ function Bulkcontext(props) {
     setBulks(json);
   };
 
-  const addBulk = async (number, message, contact, file) => {
-    console.log("addding a bulk");
+  const addBulk = async ( message, contact, file) => {
+    console.log("adding a bulk");
 
-    const response = await fetch(`${host}/api/bulk/createbulk`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token":
-         localStorage.getItem('token')
-      },
-      body: JSON.stringify({ number, message, contact, file }),
-    });
-    const bulk = await response.json();
-    setBulks(bulks.concat(bulk));
+    const formData = new FormData();
+    formData.append("message", message);
+    formData.append("contact", contact);
+    formData.append("file", file);
+
+    try {
+      const response = await fetch(`${host}/api/bulk/createbulk`, {
+        method: "POST",
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: formData,
+      });
+      const bulk = await response.json();
+      setBulks(bulks.concat(bulk));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const deleteBulk = async (id) => {
@@ -41,11 +47,10 @@ function Bulkcontext(props) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-         localStorage.getItem('token')
+        "auth-token": localStorage.getItem("token"),
       },
     });
-    const json =await response.json();
+    const json = await response.json();
     console.log(json);
 
     const newBulk = bulks.filter((bulk) => {
@@ -54,16 +59,15 @@ function Bulkcontext(props) {
     setBulks(newBulk);
   };
 
-  const editBulk = async (id, number, message, contact, file) => {
-    const response = await fetch(
-      `${host}/api/bulk/updatebulk/${id}`,
-      {      method: "PUT",
+  const editBulk = async (id,  message, contact, file) => {
+    const response = await fetch(`${host}/api/bulk/updatebulk/${id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-        localStorage.getItem('token')
+
+        "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({ number, message, contact, file }),
+      body: JSON.stringify({ message, contact, file }),
     });
     const json = await response.json();
     console.log(json);
@@ -72,15 +76,14 @@ function Bulkcontext(props) {
     for (let index = 0; index < newBulk.length; index++) {
       const element = newBulk[index];
       if (element._id === id) {
-        newBulk[index].number = number;
         newBulk[index].message = message;
-        newBulk[index].contact = contact; 
-        newBulk[index].file = file; 
-        break; 
+        newBulk[index].contact = contact;
+        newBulk[index].file = file;
+        break;
       }
-    }  
+    }
     setBulks(newBulk);
-  }
+  };
 
   return (
     <>

@@ -43,20 +43,21 @@ export default function Nave(props) {
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className=" lg:block  md:block sm:hidden hidden sm:ml-6 ">
                     <div className="flex space-x-4">
-                      {navigation.map((item,ele) => (
-                        <Link
-                          key={item.name}
-                          to={item.to}
-                          className={classNames(
-                            item.current
-                              ? "bg-gray-900 text-white"
-                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                            "rounded-md px-3 py-2 text-sm font-medium"
-                          )}
-                          aria-current={item.current ? "page" : undefined}
-                        >
-                          {item.name}
-                        </Link>
+                      {navigation.map((item, index) => (
+                        <div key={index}>
+                          <Link
+                            to={item.to}
+                            className={classNames(
+                              item.current
+                                ? "bg-gray-900 text-white"
+                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                              "rounded-md px-3 py-2 text-sm font-medium"
+                            )}
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                          </Link>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -97,10 +98,9 @@ export default function Nave(props) {
 
           <Disclosure.Panel className="sm:hidden bg-gray-800 border-y">
             <div className="space-y-1 px-2 pb-3 pt-2 ">
-              {navigation.map((item) => (
-                <>
+              {navigation.map(( item,index) => (
+                <div key={index}>
                   <Link
-                    key={item.name}
                     to={item.to}
                     className={classNames(
                       item.current
@@ -112,7 +112,7 @@ export default function Nave(props) {
                   >
                     {item.name}
                   </Link>
-                </>
+                </div>
               ))}
             </div>
           </Disclosure.Panel>
