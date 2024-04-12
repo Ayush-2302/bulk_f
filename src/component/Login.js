@@ -7,7 +7,7 @@ export default function Login(props) {
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();     
-    const response = await fetch(`http://localhost:4040/api/auth/login `, {
+    const response = await fetch(`https://bulk-backend.onrender.com/api/auth/login `, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
