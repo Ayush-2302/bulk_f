@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Alert from "./component/Alert";
 import Bulk from "./component/Bulk";
 import Bulkcontext from "./component/Bulkcontext";
+import About from "./component/About";
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -28,6 +29,7 @@ function App() {
         <Alert alert={alert} />
         <Routes>
           <Route exact path="/" element={<Home showAlert={showAlert} />} />
+          <Route exact path="/about" element={<About showAlert={showAlert} />} />
           <Route exact path="/bulk" element={<Bulk showAlert={showAlert} />} />
           <Route
             exact

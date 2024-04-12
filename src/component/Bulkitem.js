@@ -6,7 +6,7 @@ function Bulkitem(props) {
   const { deleteBulk } = context;
   return (
     <>
-      <div className="block scroll_new rounded-lg lg:h-[310px] md:h-[310%] overflow-auto bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+      <div className="block scroll_new rounded-lg lg:h-[310px] md:h-[310%] overflow-auto bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 ">
         <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
           <img className="w-full rounded-md hover:scale-105" src={bulks.file} alt=" my_pic" />
         </p>
