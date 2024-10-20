@@ -30,7 +30,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home showAlert={showAlert} />} />
           <Route exact path="/about" element={<About showAlert={showAlert} />} />
-          <Route exact path="/bulk" element={<Bulk showAlert={showAlert} />} />
+          <Route exact path="/blog" element={<Bulk showAlert={showAlert} />} />
           <Route
             exact
             path="/login"
