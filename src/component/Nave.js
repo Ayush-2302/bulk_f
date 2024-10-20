@@ -22,7 +22,7 @@ export default function Nave(props) {
     props.showAlert(" Log out Successfully", "success");
   };
   return (
-    <Disclosure as="nav" className="bg-gray-800 sticky top-0 h-16">
+    <Disclosure as="nav" className="bg-[#2f2f2f] sticky top-0 h-16">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-11/12 px-2 sm:px-6 lg:px-8">
