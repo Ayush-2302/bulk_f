@@ -32,3 +32,11 @@ width: 0;
 .scroll_new{
   min-height: 450px;
 }
+body{
+  background: #212121;
+  color: #e0e0e0; 
+  font-family: Arial, sans-serif; 
+}
+.inputColor{
+  background: #212121;
+}

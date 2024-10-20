@@ -1,14 +1,12 @@
-import React from 'react'
-import Whatsbulkui from './Whatsbulkui'
-// import Emoji from './Emoji'
+import React from "react";
+import BlogUi from "./BlogUi";
 
 function Home(props) {
   return (
-   <>
-   <Whatsbulkui showAlert={props.showAlert}  />
-   </>
-
-  )
+    <>
+      <BlogUi showAlert={props.showAlert} />
+    </>
+  );
 }
 
-export default Home
+export default Home;

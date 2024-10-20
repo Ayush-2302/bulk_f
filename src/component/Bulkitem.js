@@ -1,45 +1,45 @@
 import React, { useContext } from "react";
 import { whatsBulkContext } from "./Bulkcontext";
+
 function Bulkitem(props) {
   const bulks = props.bulk;
   const context = useContext(whatsBulkContext);
   const { deleteBulk } = context;
-  return (
-    <>
-      <div className="block scroll_new rounded-lg lg:h-[310px] md:h-[310%] overflow-auto bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 ">
-        <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-          <img className="w-full rounded-md hover:scale-105" src={bulks.file} alt=" my_pic" />
-        </p>
-        <h5 className="mb-2 text-xl font-medium capitalize leading-tight text-neutral-800 dark:text-neutral-50">
-         {bulks.message}
-        </h5>
-        <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-        {bulks.contact}
-        </p>
 
-        <div className=" space-y-2 ">
-          <button
-            onClick={() => {
-              props.updateBulk(bulks);
-            }}
-            type="button"
-            className=" ml-2 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => {
-              props.showAlert("Sucessfullly deleted the Bulk", "success");
-              deleteBulk(bulks._id);
-            }}
-            type="button"
-            className="inline-block rounded ml-2 bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-          >
-            Delete
-          </button>
-        </div>
+  return (
+    <div className="block scroll_new rounded-lg lg:h-[310px] md:h-[310%] overflow-auto bg-[#2f2f2f] p-6 shadow-lg transition-transform duration-200 ease-in-out hover:shadow-lg">
+      <div className="flex flex-col items-center">
+        <img
+          className="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-105"
+          src={bulks.file}
+          alt="Bulk item"
+        />
+        <h5 className="mb-2 text-xl font-semibold capitalize leading-tight text-center">
+          {bulks.message}
+        </h5>
+        <p className="mb-4 text-base  text-center">{bulks.contact}</p>
       </div>
-    </>
+
+      <div className="flex space-x-2">
+        <button
+          onClick={() => props.updateBulk(bulks)}
+          type="button"
+          className="inline-block rounded bg-primary px-6 py-2 text-xs font-medium uppercase leading-normal text-white shadow transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none"
+        >
+          Edit
+        </button>
+        <button
+          onClick={() => {
+            props.showAlert("Successfully deleted the Bulk", "success");
+            deleteBulk(bulks._id);
+          }}
+          type="button"
+          className="inline-block rounded bg-red-600 px-6 py-2 text-xs font-medium uppercase leading-normal text-white shadow transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
   );
 }
 

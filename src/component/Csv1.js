@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import * as XLSX from "xlsx";
-import Whatsbulkui from "./Whatsbulkui";
+import BlogUi from "./BlogUi";
 const csv = createContext;
 
 function Csv1() {
@@ -20,8 +20,8 @@ function Csv1() {
   };
 
   return (
-    <csv.Provider value={{data, handleFileUpload}}>
-      <Whatsbulkui />
+    <csv.Provider value={{ data, handleFileUpload }}>
+      <BlogUi />
     </csv.Provider>
 
     // <div className="App">
