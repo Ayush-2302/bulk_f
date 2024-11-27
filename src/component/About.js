@@ -7,7 +7,7 @@ const About = () => {
         <h1 className="text-3xl font-semibold text-center mb-6">
           About Our Project
         </h1>
-        <div className="w-11/12 mx-auto bg-[#2f2f2f] shadow-md rounded-lg overflow-hidden">
+        <div className="w-11/12 mx-auto shadow-md rounded-lg overflow-hidden">
           <div className="p-6">
             <p className="text-lg leading-relaxed">
               Welcome to our project built on the MERN stack! We're excited to

@@ -66,13 +66,14 @@ function BlogUi(props) {
   };
 
   return (
-    <div className="bg-[#2f2f2f] text-white p-5 rounded-md w-11/12 m-auto mb-20">
-      <h1 className="text-4xl text-center p-3  font-semibold">Create New Blog</h1>
+    <div className="bg-white p-8 rounded-lg shadow-lg w-11/12 lg:w-3/4 mx-auto mb-20">
+      <h1 className="text-4xl text-center p-3 font-semibold text-gray-800">Create New Blog</h1>
 
-      <div className="msg pl-10 w-11/12 pt-3">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl  font-semibold">Title</h2>
-          <div className="ico flex pr-5 space-x-3 text-2xl ">
+      {/* Title Section */}
+      <div className="msg pt-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700">Title</h2>
+          <div className="ico flex space-x-3 text-2xl text-gray-600">
             <AiOutlinePlaySquare />
             <AiOutlinePauseCircle />
           </div>
@@ -83,44 +84,52 @@ function BlogUi(props) {
           value={bulk.message}
           minLength={5}
           required
-          className="border-2 border-blue-500 inputColor text-white p-2 rounded-md w-full min-h-[100px] resize-none"
+          className="border-2  text-gray-800 p-4 rounded-md w-full min-h-[100px] resize-none placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
           placeholder="Enter your blog title..."
         />
-        <div className="emoji float-right">
-          <div onClick={handleEmojiToggle} className="hover:cursor-pointer text-2xl">😀</div>
-          {emoji && <div className="absolute -translate-x-80"><Emoji /></div>}
+        <div className="emoji float-right mt-2">
+          <div
+            onClick={handleEmojiToggle}
+            className="hover:cursor-pointer text-2xl text-gray-600"
+          >
+            😀
+          </div>
+          {emoji && <div className="absolute -translate-x-80 mt-2"><Emoji /></div>}
         </div>
       </div>
 
-      <div className="contact pl-10 w-11/12 pt-8">
-        <h2 className="text-2xl  font-semibold">Content</h2>
+      {/* Content Section */}
+      <div className="contact pt-8">
+        <h2 className="text-2xl font-semibold text-gray-700">Content</h2>
         <textarea
           name="contact"
           onChange={onChange}
           value={bulk.contact}
           minLength={5}
           required
-          className="border-2 border-blue-500 inputColor text-white p-2 rounded-md w-full min-h-[100px] resize-none"
+          className="border-2  text-gray-800 p-4 rounded-md w-full min-h-[150px] resize-none placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
           placeholder="Enter your blog content..."
         />
       </div>
 
-      <div className="file pl-10 w-11/12 pt-3">
-        <h2 className="text-2xl  font-semibold">Image</h2>
+      {/* File Upload Section */}
+      <div className="file pt-6">
+        <h2 className="text-2xl font-semibold text-gray-700">Image</h2>
         <input
           name="file"
           type="file"
           onChange={onInputChange}
           required
-          className="border-2 border-blue-500 inputColor text-white p-2 rounded-md w-full"
+          className="border-2  text-gray-800 p-4 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         />
       </div>
 
-      <div className="flex space-x-2 p-8">
+      {/* Action Buttons */}
+      <div className="flex space-x-4 pt-8 justify-center">
         <button
           type="button"
           onClick={() => setBulk({ message: "", contact: "" })}
-          className="bg-blue-500 text-white py-2 px-4 rounded-md transition duration-200 hover:bg-blue-400"
+          className="bg-blue-500 text-white py-2 px-6 rounded-md transition duration-200 hover:bg-blue-400 focus:ring-2 focus:ring-blue-300"
         >
           Prepare
         </button>
@@ -128,7 +137,11 @@ function BlogUi(props) {
           disabled={bulk.message.length < 5 || bulk.contact.length < 5 || !file}
           type="button"
           onClick={handleClick}
-          className={`py-2 px-4 rounded-md transition duration-200 ${bulk.message.length >= 5 && bulk.contact.length >= 5 && file ? "bg-blue-600 hover:bg-blue-500" : "bg-gray-600 cursor-not-allowed"}`}
+          className={`py-2 px-6 rounded-md transition duration-200 ${
+            bulk.message.length >= 5 && bulk.contact.length >= 5 && file
+              ? "bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-300"
+              : "bg-gray-600 cursor-not-allowed"
+          }`}
         >
           Send
         </button>

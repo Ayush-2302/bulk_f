@@ -7,34 +7,40 @@ function Bulkitem(props) {
   const { deleteBulk } = context;
 
   return (
-    <div className="block scroll_new rounded-lg lg:h-[310px] md:h-[310%] overflow-auto bg-[#2f2f2f] p-6 shadow-lg transition-transform duration-200 ease-in-out hover:shadow-lg">
+    <div className="bg-white rounded-lg h-96 overflow-auto scroll_new shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
       <div className="flex flex-col items-center">
         <img
-          className="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-105"
+          className="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110"
           src={bulks.file}
           alt="Bulk item"
         />
-        <h5 className="mb-2 text-xl font-semibold capitalize leading-tight text-center">
+        <h5 className="text-xl font-semibold text-gray-800 capitalize mb-2 text-center">
           {bulks.message}
         </h5>
-        <p className="mb-4 text-base  text-center">{bulks.contact}</p>
+        <p className="text-base text-gray-600 mb-4 text-center">
+          {bulks.contact}
+        </p>
       </div>
 
-      <div className="flex space-x-2">
+      {/* Action Buttons */}
+      <div className="flex justify-center space-x-4 mt-4">
+        {/* Edit Button */}
         <button
           onClick={() => props.updateBulk(bulks)}
           type="button"
-          className="inline-block rounded bg-primary px-6 py-2 text-xs font-medium uppercase leading-normal text-white shadow transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none"
+          className="bg-blue-500 hover:bg-blue-500 text-white text-xs font-medium uppercase rounded-md px-6 py-2 shadow-md transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
         >
           Edit
         </button>
+
+        {/* Delete Button */}
         <button
           onClick={() => {
             props.showAlert("Successfully deleted the Bulk", "success");
             deleteBulk(bulks._id);
           }}
           type="button"
-          className="inline-block rounded bg-red-600 px-6 py-2 text-xs font-medium uppercase leading-normal text-white shadow transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none"
+          className="bg-red-600 hover:bg-red-500 text-white text-xs font-medium uppercase rounded-md px-6 py-2 shadow-md transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300"
         >
           Delete
         </button>

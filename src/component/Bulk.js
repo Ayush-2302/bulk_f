@@ -57,7 +57,7 @@ export default function Bulk(props) {
 
   return (
     <>
-      <TEModal show={showModal} setShow={setShowModal}>
+      <TEModal show={showModal} className="w-96" setShow={setShowModal}>
         <TEModalDialog>
           <TEModalContent>
             <TEModalHeader>
@@ -73,7 +73,7 @@ export default function Bulk(props) {
               </button>
             </TEModalHeader>
             <TEModalBody>
-              <div className="p-4 bg-white rounded-lg shadow-lg">
+              <div className="p-6 bg-white rounded-lg shadow-lg">
                 <p className="text-3xl text-center text-blue-600 font-semibold mb-4">
                   WhatBulk
                 </p>
@@ -86,11 +86,11 @@ export default function Bulk(props) {
                       value={bulk.emessage}
                       minLength={5}
                       required
-                      className="flex-1 border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+                      className="flex-1 border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition-all duration-200"
                     />
                     <button
                       onClick={() => setEmojiVisible(!emojiVisible)}
-                      className="text-2xl"
+                      className="text-2xl text-gray-700 hover:text-blue-500 transition-colors duration-200"
                     >
                       😀
                     </button>
@@ -117,7 +117,7 @@ export default function Bulk(props) {
                     onChange={onChange}
                     rows={5}
                     value={bulk.econtact}
-                    className="flex-1 border-2 w-11/12 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+                    className="flex-1 border-2 w-11/12 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition-all duration-200"
                     minLength={5}
                     required
                   />
@@ -127,7 +127,7 @@ export default function Bulk(props) {
             <TEModalFooter>
               <button
                 onClick={() => setShowModal(false)}
-                className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
+                className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-200"
               >
                 Close
               </button>
@@ -136,9 +136,9 @@ export default function Bulk(props) {
                 disabled={bulk.emessage.length < 5 || bulk.econtact.length < 5}
                 className={`ml-2 px-4 py-2 rounded-md text-white ${
                   bulk.emessage.length < 5 || bulk.econtact.length < 5
-                    ? "bg-gray-400"
+                    ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700"
-                }`}
+                } transition-all duration-200`}
               >
                 Save changes
               </button>
@@ -147,24 +147,23 @@ export default function Bulk(props) {
         </TEModalDialog>
       </TEModal>
 
-      <div className="text-2xl  ml-20 mb-4">
-        <p className="text-4xl pb-4">Your Blogs</p>
+      <div className="text-2xl ml-20 mb-4">
+        <p className="text-4xl pb-4 font-semibold">Your Blogs</p>
         {bulks.length === 0 && (
           <p className="text-gray-500">Nothing to display, please add a bulk</p>
         )}
       </div>
-      <div className="w-11/12  mx-auto">
-
-      <div className="grid  lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mx-4">
-        {bulks.map((bulk, index) => (
-          <Bulkitem
-            key={index}
-            bulk={bulk}
-            updateBulk={updateBulk}
-            showAlert={props.showAlert}
-          />
-        ))}
-      </div>
+      <div className="w-11/12 mx-auto">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 mx-4">
+          {bulks.map((bulk, index) => (
+            <Bulkitem
+              key={index}
+              bulk={bulk}
+              updateBulk={updateBulk}
+              showAlert={props.showAlert}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { TEInput, TERipple } from "tw-elements-react";
 
 function Signup(props) {
   const [credentials, setCredentials] = useState({
@@ -9,29 +10,31 @@ function Signup(props) {
     cpassword: "",
   });
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password } = credentials;
-    const response = await fetch(`https://bulk-backend.onrender.com/api/auth/createuser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    });
+    const response = await fetch(
+      `https://bulk-backend.onrender.com/api/auth/createuser`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      }
+    );
     const json = await response.json();
-    console.log(json);
     if (json.success) {
-      //save the auth token and redirect
       localStorage.setItem("token", json.authtoken);
       navigate("/login");
-      props.showAlert(" Account Created Successfully", "success");
+      props.showAlert("Account Created Successfully", "success");
     } else {
-      props.showAlert(" Invalid Credentials", "danger");
+      props.showAlert("Something went wrong", "danger");
     }
   };
 
@@ -40,117 +43,114 @@ function Signup(props) {
   };
 
   return (
-    <>
-  
-         
-        <div onSubmit={handleSubmit}>
-          <div className="flex  flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <h2 className=" text-center bg-blue-500 w-full p-3 rounded-md text-white text-2xl font-bold leading-9 tracking-tight ">
-               SIGN UP
-              </h2>
-            </div>
-
-            <div className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form className="space-y-6" action="#" method="POST">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm  font-medium leading-6 text-gray-900"
-                  >
-                    Name
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      autoComplete="name"
-                      required
-                      onChange={onchange}
-                      className="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm  font-medium leading-6 text-gray-900"
-                  >
-                    Email address
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      minLength={5}
-                      required
-                      onChange={onchange}
-                      className="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Password
-                    </label>
-                    <div className="text-sm">
-                      <Link
-                        to="/"
-                        className="font-semibold text-indigo-600 hover:text-indigo-500"
-                      >
-                        Forgot password?
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="mt-2">
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      autoComplete="current-password"
-                      minLength={5}
-                      required
-                      onChange={onchange}
-                      className="block w-full pl-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <button   type="submit"
-                className=" bg-blue-500 font-semibold text-white rounded-md hover:bg-blue-400 w-full py-2 ">
-                  Sign in
-                </button>
-
-                {/* <div>
-                  <button
-                    type="submit"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    Sign in
-                  </button>
-                </div> */}
-              </form>
-
-              <p className="mt-10 text-center text-sm text-gray-500">
-                Not a member?{" "}
-                <Link
-                  to="/"
-                  className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-                >
-                  Start a 14 day free trial
-                </Link>
-              </p>
-            </div>
-          </div>
+    <section className="flex items-center justify-center text-black h-screen bg-gray-50">
+      <div className="flex flex-col md:flex-row items-center bg-white rounded-lg shadow-lg max-w-4xl w-full p-8">
+        <div className="mb-6 md:mb-0 md:w-6/12">
+          <img
+            src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            className="w-full rounded-lg"
+            alt="Signup"
+          />
         </div>
-    </>
+        <div className="w-full md:w-5/12">
+          <form onSubmit={handleSubmit}>
+            <h2 className="text-center text-2xl font-semibold text-gray-800 mb-4">
+              Create a new account
+            </h2>
+
+
+            {/* Name input */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="name"
+              >
+                Name
+              </label>
+            </div>
+            <TEInput
+              type="text"
+              name="name"
+              className="w-full px-4 py-2 border text-gray-800 rounded-md mb-4 focus:ring-2 focus:ring-blue-500 transition duration-200"
+              value={credentials.name}
+              onChange={onchange}
+              placeholder="Enter your name"
+            />
+
+            {/* Email input */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="email"
+              >
+                Email address
+              </label>
+            </div>
+            <TEInput
+              type="email"
+              name="email"
+              className="w-full px-4 py-2 border text-gray-800 rounded-md mb-4 focus:ring-2 focus:ring-blue-500 transition duration-200"
+              value={credentials.email}
+              onChange={onchange}
+              placeholder="Enter email"
+            />
+
+            {/* Password input */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="password"
+              >
+                Password
+              </label>
+            </div>
+            <TEInput
+              type="password"
+              name="password"
+              className="w-full px-4 py-2 border text-gray-800 rounded-md mb-4 focus:ring-2 focus:ring-blue-500 transition duration-200"
+              value={credentials.password}
+              onChange={onchange}
+              placeholder="Enter password"
+            />
+
+            {/* Confirm Password input */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="cpassword"
+              >
+                Confirm Password
+              </label>
+            </div>
+            <TEInput
+              type="password"
+              name="cpassword"
+              className="w-full px-4 py-2 border text-gray-800 rounded-md mb-4 focus:ring-2 focus:ring-blue-500 transition duration-200"
+              value={credentials.cpassword}
+              onChange={onchange}
+              placeholder="Confirm your password"
+            />
+
+            {/* Submit button */}
+            <TERipple className="w-full">
+              <button
+                type="submit"
+                className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 transition duration-200"
+              >
+                Signup
+              </button>
+            </TERipple>
+
+            <p className="mt-4 text-center text-gray-600">
+              Already have an account?{" "}
+              <Link to="/login" className="text-blue-500 hover:underline">
+                Login here
+              </Link>
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
 
